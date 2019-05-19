@@ -3,10 +3,10 @@ import numpy as np
 import re
 
 
-cui_vecs_df = pd.read_csv('./cui2vec_pretrained.csv')
+cui_vecs_df = pd.read_csv('data/cui2vec_pretrained.csv')
 cui_vecs_df.set_index('Unnamed: 0', inplace=True)
 x = cui_vecs_df.to_string(header=False,index=True, index_names=False)
-tfile = open('cui2vec_pretrained.txt', 'a')
+tfile = open('data/cui2vec_pretrained.txt', 'a')
 tfile.write(x)
 tfile.close()
 
