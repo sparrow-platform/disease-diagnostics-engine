@@ -55,6 +55,7 @@ class SQLite(object):
 		if database is None:
 			raise Exception('No database provided')
 		
+		print ("Database is: " + database)
 		self.database = database
 		self.handle = None
 		self.cursor = None

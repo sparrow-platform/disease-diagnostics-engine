@@ -1,4 +1,5 @@
-
-1. Download data folder from 
-2. Run cui2vec-converter.py to convert to GloVe-format. Uses pretrained embeddings first (SRC: https://figshare.com/s/00d69861786cd0156d81)
-3. 
+1. The project runs on Python3.0
+2. Install all requirements (pip install -r requirements.txt)
+3. Download Database from -
+4. Place the umls.db file in /umls/databases and /databases
+5. The API takes codes as input (Not symptom names) - use the data files in codeToNameMap for autocomplete features and getting CUI codes for diseases/symptoms/medicines

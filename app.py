@@ -24,7 +24,7 @@ import uuid
 import requests
 import sys
 
-from helper import vector_cos5, isValid, isInDB, get_model, findFeatures, findSymptom, findDisease, syInData
+from helper import vector_cos5, isValid, isInDB, get_model, findFeatures, findSymptom, findDisease, syInData, getCodeFromName
 
 
 
@@ -58,9 +58,8 @@ def get_model():
         feature_dict[f] = i
     return mnb, features, feature_dict
 
+
 MODEL, LABELS, LABELS_DICT = get_model()
-
-
 
 @app.route('/api/labels', methods = ['GET'])
 def labels():
@@ -68,6 +67,15 @@ def labels():
     for i,f in enumerate(LABELS):
         features_for_select.append({ "value": f, "label": f })
     return jsonify(features_for_select)
+
+
+
+@app.route('/api/searchCode', methods = ['GET'])
+def getName():
+  args = request.args
+  name = args['symptom']
+  return getCodeFromName(name)
+    
 
 
 
@@ -112,7 +120,7 @@ def sySuggest():
         else:
             continue
 
-
+    print(results)
     return jsonify(results)
 
 

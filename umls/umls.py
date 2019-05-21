@@ -102,7 +102,7 @@ class UMLSLookup (object):
 		"""
 		names = []
 		for res in self.lookup_code(cui, preferred, lat):
-			names.append(str(res[0].decode('utf8')))
+			names.append(str(res[0]))
 		return names if len(names) > 0 else []
 	
 	

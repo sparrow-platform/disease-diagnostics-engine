@@ -23,9 +23,16 @@ from umls.umls import UMLSLookup
 
 all_csv = pd.read_csv('disease-symptom-merged.csv', encoding='utf-8', index_col=None, header=0)
 
+
+look_umls = UMLSLookup()
+
+
 def dot_product2(v1, v2):
     return sum(map(operator.mul, v1, v2))
 
+def getCodeFromName(name):
+  return look_umls.lookup_code_for_name(name)
+  
 
 def vector_cos5(v1, v2):
     prod = dot_product2(v1, v2)
@@ -73,7 +80,6 @@ def getRelatedSymptomsForDisease(cui):
 
 def findFeatures(cui, lang):
     symptom_strings = []
-    look_umls = UMLSLookup()
 
     for s_cui in getRelatedSymptomsForDisease(cui):
         meaning_umls = look_umls.lookup_code_meaning(s_cui, lat=lang, preferred=False)
