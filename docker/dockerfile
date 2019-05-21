@@ -13,7 +13,6 @@ RUN apt install git -y \
 
 WORKDIR /disease-diagnostics-engine
 
-ADD /umls.db /disease-diagnostics-engine/databases/umls.db
 ADD /umls.db /disease-diagnostics-engine/umls/databases/umls.db
 
 RUN ls
