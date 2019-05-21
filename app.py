@@ -18,23 +18,26 @@ import math
 import operator
 from more_itertools import unique_everseen
 from uuid import uuid4
-
+import difflib
 import os
 import uuid
 import requests
 import sys
 
-from helper import vector_cos5, isValid, isInDB, get_model, findFeatures, findSymptom, findDisease, syInData 
+from helper import vector_cos5, isValid, isInDB, get_model, findFeatures, findSymptom, findDisease, syInData, getDetails
 
 
-
-
+with open('en_Labels.js') as dataFile:
+    json_data = dataFile.read()
+data = json.loads(json_data)
+nameToCUI = {}
+for i in data:
+    nameToCUI[i['label']] = i['value']
+    
 
 app = Flask(
     __name__
 )
-
-
 
 class SetEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -61,16 +64,36 @@ def get_model():
 
 MODEL, LABELS, LABELS_DICT = get_model()
 
-@app.route('/api/labels', methods = ['GET'])
-def labels():
-    features_for_select = []
-    for i,f in enumerate(LABELS):
-        features_for_select.append({ "value": f, "label": f })
-    return jsonify(features_for_select)
     
+#Takes POST request (JSON Object with key 'name')
+#Returns CUI if the name is correct 
+#Else returns list of nearest match symptoms names with their CUI
+#Output is of format: {"CUI1":"Name1", "CUI2":"Name2"....}
+@app.route('/api/validateSymptom', methods = ['POST'])
+def getCorrectSymptomName():
+  data = request.get_json(silent=True)
+  name = escape(data.get('name'))
+  if name in nameToCUI:
+    return jsonify({nameToCUI[name]: name})
+  else:
+    correctNames = difflib.get_close_matches('Heart', nameToCUI.keys())
+    dct = {}
+    for i in correctNames:
+      dct[nameToCUI[i]] = i
+    return jsonify(dct)
+
+
+#Takes CUI as input, returns corresponding description 
+@app.route('/api/getDetails', methods = ['POST'])
+def getDetailsfromCode():
+    data = request.get_json(silent=True)
+    code = escape(data.get('code'))
+    return jsonify(getDetails(code))
 
 
 
+  
+#Suggests relevant symptoms / diseases to list of symptoms given as input
 @app.route('/api/sySuggest', methods = ['POST'])
 def sySuggest():
     data = request.get_json(silent=True)
@@ -135,6 +158,7 @@ availableLang = {'en': 'ENG', 'de': 'GER'}
 
 
 
+#Given input list of symptoms, gives list of possible diseases with % probability 
 @app.route('/api/predict', methods = ['POST'])
 @expects_json(schema) # if payload is invalid, request will be aborted with error code 400
 def predict():

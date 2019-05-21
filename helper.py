@@ -24,6 +24,9 @@ from umls.umls import UMLSLookup
 all_csv = pd.read_csv('disease-symptom-merged.csv', encoding='utf-8', index_col=None, header=0)
 
 
+def getDetails(cui):
+    look_umls = UMLSLookup()
+    return look_umls.lookup_code_description(cui)
 
 def dot_product2(v1, v2):
     return sum(map(operator.mul, v1, v2))

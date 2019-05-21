@@ -104,7 +104,41 @@ class UMLSLookup (object):
 		for res in self.lookup_code(cui, preferred, lat):
 			names.append(str(res[0]))
 		return names if len(names) > 0 else []
+
 	
+	def lookup_code_description(self, cui, preferred=True, no_html=True, lat='ENG', destinct=False):
+		names = []
+
+		if cui is None or len(cui) < 1:
+			return []
+		
+		# lazy UMLS db checking
+		if not UMLSLookup.did_check_dbs:
+			UMLS.check_database()
+			UMLSLookup.did_check_dbs = True
+		
+		# take care of negations
+		negated = '-' == cui[0]
+		if negated:
+			cui = cui[1:]
+		
+		parts = cui.split('@', 1)
+		lookup_cui = parts[0]
+		
+		if preferred:
+			sql = 'SELECT DISTINCT * FROM descriptions WHERE LAT = "{lng}" AND CUI = ? AND SAB IN ({pref}) LIMIT 1'.format(pref=", ".join(UMLSLookup.preferred_sources), lng=lat)
+		else:
+			sql = 'SELECT DISTINCT * FROM descriptions WHERE LAT = "{lng}" AND CUI = ? LIMIT 1'.format(lng=lat)
+		# return as list
+		arr = []
+		for res in self.sqlite.execute(sql, (lookup_cui,)):
+			arr.append(res)
+
+		
+		for res in arr:
+			names.append(str(res))
+
+		return names if len(names) > 0 else []
 	
 	def lookup_code_for_name(self, name, preferred=True):
 		""" Tries to find a good concept code for the given concept name.
