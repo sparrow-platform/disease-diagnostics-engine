@@ -1,5 +1,5 @@
-1. The project runs on Python3.0
+1. The project runs on Python3.x
 2. Install all requirements (pip install -r requirements.txt)
-3. Download Database from -
+3. Download Database from - https://drive.google.com/file/d/1BmnzCv2hjU49vXxBv_kI4FUae-lIAdz0/view?usp=sharing
 4. Place the umls.db file in /umls/databases and /databases
 5. The API takes codes as input (Not symptom names) - use the data files in codeToNameMap for autocomplete features and getting CUI codes for diseases/symptoms/medicines
