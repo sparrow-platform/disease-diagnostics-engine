@@ -1,3 +1,4 @@
 data/
 umls/databases/umls.db
 databases/
+docker/umls.db
