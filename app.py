@@ -24,7 +24,7 @@ import uuid
 import requests
 import sys
 
-from helper import vector_cos5, isValid, isInDB, get_model, findFeatures, findSymptom, findDisease, syInData, getCodeFromName
+from helper import vector_cos5, isValid, isInDB, get_model, findFeatures, findSymptom, findDisease, syInData 
 
 
 
@@ -67,14 +67,6 @@ def labels():
     for i,f in enumerate(LABELS):
         features_for_select.append({ "value": f, "label": f })
     return jsonify(features_for_select)
-
-
-
-@app.route('/api/searchCode', methods = ['GET'])
-def getName():
-  args = request.args
-  name = args['symptom']
-  return getCodeFromName(name)
     
 
 
@@ -180,11 +172,12 @@ def predict():
     results_ordered_by_probability = map(lambda x: {
         "disease": findDisease(x[0], langCode),
         "disease_cui": x[0],
-        "prob": round(Decimal(x[1] * 100), 3),
+        "prob": float(round(Decimal(x[1] * 100), 3)),
         "sy": findFeatures(x[0], langCode)
     }, sorted(zip(MODEL.classes_, results), key=lambda x: x[1], reverse=True))
 
-    prediction = results_ordered_by_probability[:15]
+    prediction = list(results_ordered_by_probability)[:15]
+
 
     return jsonify(prediction)
 
