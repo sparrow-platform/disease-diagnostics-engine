@@ -1,4 +1,2 @@
-dataOld/
-umls/databases
-docker/umls.db
-docker/data
+umls.db
+data/
