@@ -17,5 +17,5 @@ RUN pip install more-itertools
 
 ADD /data /disease-diagnostics-engine/data/all-files-for-ml
 
-RUN python app.py
-
+ENTRYPOINT ["python"]
+CMD ["app.py"]
