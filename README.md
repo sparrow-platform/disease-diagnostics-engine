@@ -1,20 +1,17 @@
-Installation:
+Dockerhub link - https://hub.docker.com/r/jaylohokare/diseases-predictor
 
-System requiremenst - 
-1. Python3.x
-2. 16GB disk 
+<h1>Installation:</h1>
 
+<b>Quick setup</b><br>
 
-<b>Quick setup</b>
-Enter docker folder and run
 ```
 docker-compose up
 ```
-
 The API will be live at 192.168.99.100:5000
 
 
-<b>To build dockerfile from scratch :</b>
+<b>To build using dockerfile:</b><br>
+
 1. Download database umls.db from - 
 https://drive.google.com/file/d/1BmnzCv2hjU49vXxBv_kI4FUae-lIAdz0/view?usp=sharing
 
