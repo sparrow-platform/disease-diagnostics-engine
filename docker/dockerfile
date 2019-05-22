@@ -13,10 +13,9 @@ RUN ls
 ADD /requirements.txt /disease-diagnostics-engine/requirementsNew.txt
 RUN pip install -r requirementsNew.txt
 
-RUN pip install gunicorn flask
+RUN pip install more-itertools
 
+ADD /data /disease-diagnostics-engine/data/all-files-for-ml
 
-
-CMD [ "gunicorn", "--workers=2", "--bind=0.0.0.0:5000", "app:app"]
-
+RUN python app.py
 

@@ -207,8 +207,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    gunicorn_logger = logging.getLogger('gunicorn.error')
-    app.logger.handlers = gunicorn_logger.handlers
-    app.logger.setLevel(gunicorn_logger.level)
-    #Accessible on http://192.168.99.100 for localhost docker toolbox (windows)
     app.run('0.0.0.0', 5000, debug=True)
