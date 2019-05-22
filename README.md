@@ -7,7 +7,7 @@ Dockerhub link - https://hub.docker.com/r/jaylohokare/diseases-predictor
 ```
 docker-compose up
 ```
-The API will be live at 192.168.99.100:5000
+The API will be live at 192.168.99.100:5000 (Windows) 127.0.0.1:5000 (Linux/Mac)
 
 
 <b>To build using dockerfile:</b><br>
