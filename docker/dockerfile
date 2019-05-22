@@ -10,7 +10,8 @@ ADD /umls.db /disease-diagnostics-engine/umls/databases/umls.db
 
 RUN ls
 
-RUN pip install -r requirements.txt
+ADD /requirements.txt /disease-diagnostics-engine/requirementsNew.txt
+RUN pip install -r requirementsNew.txt
 
 RUN pip install gunicorn flask
 
