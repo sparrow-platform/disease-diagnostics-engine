@@ -1,0 +1,7 @@
+version: '3'
+services:
+  web:
+    image: jaylohokare/diseases-predictor:0.1
+    container_name: flask
+    ports:
+     - "5000:5000"
