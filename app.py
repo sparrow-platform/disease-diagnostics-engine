@@ -32,7 +32,7 @@ with open('en_Labels.js') as dataFile:
 data = json.loads(json_data)
 nameToCUI = {}
 for i in data:
-    nameToCUI[i['label']] = i['value']
+    nameToCUI[i['label'].lower()] = i['value']
     
 
 app = Flask(
@@ -72,7 +72,7 @@ MODEL, LABELS, LABELS_DICT = get_model()
 @app.route('/api/validateSymptom', methods = ['POST'])
 def getCorrectSymptomName():
   data = request.get_json(silent=True)
-  name = escape(data.get('name'))
+  name = escape(data.get('name')).lower()
   if name in nameToCUI:
     return jsonify({nameToCUI[name]: name})
   else:
