@@ -36,4 +36,9 @@ docker system prune -a
 #Get all docker instances
 docker container ls
 
+
+#To push to docker hub
+docker images 
+docker tag ID jaylohokare/diseases-predictor:0.3
+docker push jaylohokare/diseases-predictor
 ````
