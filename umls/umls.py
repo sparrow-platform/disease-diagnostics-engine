@@ -14,6 +14,8 @@ import logging
 
 from sqlite import SQLite			# for py-umls standalone
 
+import os.path
+
 # reload(sys)
 # sys.setdefaultencoding('utf-8')
 
@@ -29,8 +31,8 @@ class UMLS (object):
 		UMLS: (umls.db)
 		If missing prompt to use the `umls.sh` script
 		"""
-		
-		umls_db = os.path.join('databases', 'umls.db')
+		absolute = os.path.dirname(os.path.realpath(__file__))
+		umls_db = os.path.join(absolute , 'databases/umls.db')
 		if not os.path.exists(umls_db):
 			raise Exception("The UMLS database at {} does not exist. Run the import script `databases/umls.sh`."
 				.format(os.path.abspath(umls_db)))
