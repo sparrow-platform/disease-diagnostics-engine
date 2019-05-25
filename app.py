@@ -76,7 +76,7 @@ def getCorrectSymptomName():
   if name in nameToCUI:
     return jsonify({nameToCUI[name]: name})
   else:
-    correctNames = difflib.get_close_matches('Heart', nameToCUI.keys())
+    correctNames = difflib.get_close_matches(name, nameToCUI.keys())
     dct = {}
     for i in correctNames:
       dct[nameToCUI[i]] = i
