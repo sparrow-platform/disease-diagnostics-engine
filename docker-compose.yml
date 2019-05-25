@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: jaylohokare/diseases-predictor:0.3
+    image: jaylohokare/diseases-predictor:0.4
     container_name: flask
     ports:
      - "5000:5000"
