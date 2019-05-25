@@ -23,8 +23,17 @@ https://drive.google.com/file/d/1nwD3aEMwW5CF8CWOscOT3IMztuNBpaYq/view?usp=shari
 docker build -m 25g -t medicalapi .
 ```
 
-To deploy after building - 
+To run after building - 
 ```
 docker run -d -p 5000:5000 medicalapi
 ```
 
+Other docker useful commands-
+```
+#Clear all docker images cache
+docker system prune -a
+
+#Get all docker instances
+docker container ls
+
+````
