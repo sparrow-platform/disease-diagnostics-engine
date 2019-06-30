@@ -10,6 +10,10 @@ The API has endpoints to:
 
 This repo acts as core part of SparrowAI. The API is triggered by IBM Watson Assistant via Sparrow middleware.
 
+<p align="center">
+<img  height=500 src="https://sparrow-platform.com/images/sparrow/MedicalInfoEngine.png"/>
+</p>
+
 <h1>Installation:</h1>
 Dockerhub link - https://hub.docker.com/r/jaylohokare/diseases-predictor
 
