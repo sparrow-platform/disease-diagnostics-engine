@@ -11,7 +11,7 @@ The API has endpoints to:
 This repo acts as core part of SparrowAI. The API is triggered by IBM Watson Assistant via Sparrow middleware.
 
 <p align="center">
-<img  height=500 src="https://sparrow-platform.com/images/sparrow/MedicalInfoEngine.png"/>
+<img  max-height=500 src="https://sparrow-platform.com/images/sparrow/MedicalInfoEngine.png"/>
 </p>
 
 <h1>Technical details</h1>
@@ -19,7 +19,7 @@ This project is a FLASK based API interfacing database (Currently SQLite).
 Due to large size of the database, we have not hosted the database on cloud, but have created the API in a way that changing sqlite.py in umls folder to custom database connector will easily help us migrate the project to cloud based database like IBM DB2. 
 
 <p align="center">
-<img  height=400 src="https://raw.githubusercontent.com/sparrow-platform/disease-diagnostics-engine/master/DiseaseDiagnosticEngine.png"/>
+<img  max-height=400 src="https://raw.githubusercontent.com/sparrow-platform/disease-diagnostics-engine/master/DiseaseDiagnosticEngine.png"/>
 </p> 
 
 <h1>Installation:</h1>
