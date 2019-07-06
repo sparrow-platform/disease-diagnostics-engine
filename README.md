@@ -65,3 +65,53 @@ docker images
 docker tag ID jaylohokare/diseases-predictor:0.3
 docker push jaylohokare/diseases-predictor
 ````
+
+
+## API format
+UMLS databases are based on CUIs for medical lexicons. We have built couple of APIs to convert plain text symptoms to CUIs and then use these CUIs to predict diseases. 
+
+/api/validateSymptom
+```
+Input:
+Takes symptom name (Need not be perfect match to content in DB)
+Example - {"name" : string_SymptomName}
+
+Output:
+Returns CUI if entered name is exact match to DB content, or returns list of symptoms that are closest match and their CUIs
+Example - {"CUI1": string_Symptom1, "CUI2": string_Symptom2....}
+```
+
+/api/getDetails
+```
+Input:
+Takes symptom CUI 
+Example - {"code" : string_CUI}
+
+Output:
+Returns description from UMLS
+```
+
+
+/api/sySuggest
+```
+Input:
+Takes symptom CUI 
+Example - {"symptom" : string_CUI}
+
+Output:
+Returns list of relevant symptoms
+Example - [{"label": string_SymptomName, "value": string_SymptomCUI}, {"label": string_SymptomName, "value": string_SymptomCUI}, ....]
+```
+
+
+/api/predict
+```
+Input:
+Takes list of symptoms CUIs as input
+Example - {"symptoms" :[string_SymptomCUI1, string_SymptomCUI2, ...]}
+
+Output:
+Returns list of diseases with their CUIs, probabilities, related symptoms
+Example - [{"disease": string_DiseaseName, "disease_cui": string_DiseaseCUI, "prob": float_Probability, "sy": arrayOfStrings_relatedSymptoms}, {}...]
+```
+
