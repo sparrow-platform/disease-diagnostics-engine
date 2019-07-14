@@ -127,7 +127,7 @@ Example - [{"disease": string_DiseaseName, "disease_cui": string_DiseaseCUI, "pr
 ```
 
 
-/api/predict
+/api/predictFromString
 ```
 Input:
 Takes | delimited string of symptom names as input
