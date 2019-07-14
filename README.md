@@ -59,6 +59,17 @@ docker system prune -a
 #Get all docker instances
 docker container ls
 
+#List all containers (only IDs)
+docker ps -aq
+
+#Stop all running containers
+docker stop $(docker ps -aq)
+
+#Remove all containers
+docker rm $(docker ps -aq)
+
+#Remove all images
+docker rmi $(docker images -q)
 
 #To push to docker hub
 docker images 
@@ -115,3 +126,14 @@ Returns list of diseases with their CUIs, probabilities, related symptoms
 Example - [{"disease": string_DiseaseName, "disease_cui": string_DiseaseCUI, "prob": float_Probability, "sy": arrayOfStrings_relatedSymptoms}, {}...]
 ```
 
+
+/api/predict
+```
+Input:
+Takes | delimited string of symptom names as input
+Example - {"symptoms" :"symptom1|sympto2|"}
+
+Output:
+Returns list of diseases with their CUIs, probabilities, related symptoms
+Example - [{"disease": string_DiseaseName, "disease_cui": string_DiseaseCUI, "prob": float_Probability, "sy": arrayOfStrings_relatedSymptoms}, {}...]
+```
