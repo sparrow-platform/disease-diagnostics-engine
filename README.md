@@ -28,6 +28,10 @@ Dockerhub link - https://hub.docker.com/r/jaylohokare/diseases-predictor
 <b>Quick setup</b><br>
 
 ```
+#Command to directly pull image from dockerhub and run
+docker run -d -p 5000:5000 jaylohokare/diseases-predictor:0.5
+
+#Download the docker compose file and run
 docker-compose up
 ```
 The API will be live at 192.168.99.100:5000 (Windows) 127.0.0.1:5000 (Linux/Mac)
